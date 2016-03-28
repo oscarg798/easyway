@@ -1,34 +1,118 @@
 <div class="employee-container" ng-app="EmployeeModule"
 ng-controller="EmployeeController as employeeControl">
 <div class="row">
-    <form class="col s12">
-      <div class="row">
-        <div class="input-field col s6">
-          <input placeholder="{{employeeControl.namePlaceholder}}"
-          ng-model="employeeControl.employee.name" type="text" class="validate">
-          <label for="first_name">{{employeeControl.namePlaceholder}}</label>
-        </div>
+  <form class="col s12">
+    <div class="row">
+      <div class="input-field col s12">
+        <input placeholder="{{employeeControl.namePlaceholder}}"
+        ng-model="employeeControl.employee.name" type="text" class="validate">
+        <label>{{employeeControl.namePlaceholder}}</label>
       </div>
-
-      <div class="row">
-        <div class="input-field col s6">
-          <input placeholder="{{employeeControl.agePlaceholder}}"
-          ng-model="employeeControl.employee.age" type="date" class="validate">
-        </div>
-
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <label>{{employeeControl.agePlaceholder}}</label>
+        <input ng-model="employeeControl.employee.age"  type="date"
+        class="datepicker">
       </div>
+    </div>
 
-      <div class="row">
-        <div class="input-field col s6">
+    <div class="row">
+      <div class="col">
+        <h5>{{employeeControl.skillsPlaceholder}}</h5>
+      </div>
+    </div>
+    <div class="collection">
+      <div class="row collection-item" ng-repeat="skillInput in employeeControl.skillsCount track by $index">
+        <div class="input-field col s8">
           <input placeholder="{{employeeControl.skillsPlaceholder}}"
-          ng-model="employeeControl.employee.skills" type="text" class="validate">
-          <label for="first_name">{{employeeControl.skillsPlaceholder}}</label>
+          ng-model="skillInput" type="text" class="validate" value="{{skilssInput}}">
         </div>
-        <div class="col">
-          <a class="btn-floating btn-small waves-effect waves-light red">add<i class="material-icons"></i></a>
+        <div class="col s2">
+          <a class="btn-floating btn-medium waves-effect waves-light blue"
+          ng-click="employeeControl.addSkillInput(skillInput)">
+          <i class="material-icons">{{i18n.addLabel}}</i></a>
+        </div>
+        <div class="col s2">
+          <a class="btn-floating btn-medium waves-effect waves-light red"
+          ng-click="employeeControl.deleteSkillInput(skillInput)">
+          <i class="material-icons">{{i18n.deleteLabel}}</i></a>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col s6">
+            <label>{{::i18n.employee.languageLabel}}</label>
+        <select ng-model="employeeControl.employee.languageSkills" material-select>
+          <option value="" disabled selected>{{::i18n.selectOptionLabel}}</option>
+          <option  ng-repeat="language in employeeControl.languageSkillsOptions"
+          value="{{language}}">{{::language}}</option>
+        </select>
+      </div>
+      <div class="col s6">
+              <label>{{::i18n.employee.levelLabel}}</label>
+        <select ng-model="employeeControl.employee.languageSkillLevel" material-select>
+          <option value="" disabled selected>{{::i18n.selectOptionLabel}}</option>
+          <option  ng-repeat="level in employeeControl.languageSkillLevelOptions"
+          value="{{level}}">{{::level}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <h5>{{i18n.workExperience.workExperienceLabel}}</h5>
+      </div>
+    </div>
+    <div class="row collection collection-item" ng-repeat="workExperience in employeeControl.workExperienceCount track by $index">
+      <div class="input-field col s12">
+        <label>{{::i18n.workExperience.companyPlaceHolder}}</label>
+        <input ng-model="workExperience.company" type="text">
+      </div>
+      <div class="input-field col s12">
+        <label>{{::i18n.workExperience.rolePlaceholder}}</label>
+        <input ng-model="workExperience.role" type="text">
+      </div>
+      <div class="input-field col s12" >
+        <label>{{::i18n.workExperience.startDatePlaceholder}}</label>
+          <input  type="date" ng-model="workExperience.startDate"
+          >
+      </div>
+      <div class="input-field col s12">
+        <label>{{::i18n.workExperience.endDatePlaceHolder}}</label>
+        <input id="workExperiencePicker" ng-model="workExperience.endDate"  type="date"
+        class="datepicker">
+      </div>
+
+      <div class="row" ng-repeat="responsabilityInput in workExperience.responsabilitiesCount track by $index">
+        <div class="input-field col s8">
+          <input placeholder="{{i18n.workExperience.responsibilitiesPlaceholder}}"
+          ng-model="responsabilityInput" type="text" class="validate" value="{{responsabilityInput}}">
+        </div>
+        <div class="col s2">
+          <a class="btn-floating btn-medium waves-effect waves-light blue"
+          ng-click="employeeControl.addResponsibilityInput(responsabilityInput, workExperience)">
+          <i class="material-icons">{{i18n.addLabel}}</i></a>
+        </div>
+        <div class="col s2">
+          <a class="btn-floating btn-medium waves-effect waves-light red"
+          ng-click="employeeControl.deleteResponsibilityInput(responsabilityInput, workExperience)">
+          <i class="material-icons">{{i18n.deleteLabel}}</i></a>
         </div>
       </div>
 
-    </form>
-  </div>
+      <div class="row">
+        <div class="col s6">
+          <a class="btn-floating btn-medium waves-effect waves-light blue"
+          ng-click="employeeControl.addWorkExperienceCollection(workExperience)">
+          <i class="material-icons">{{i18n.addLabel}}</i></a>
+        </div>
+        <div class="col s6">
+          <a class="btn-floating btn-medium waves-effect waves-light red"
+          ng-click="employeeControl.deleteWorkExperienceCollection(workExperience)">
+          <i class="material-icons">{{i18n.deleteLabel}}</i></a>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
 </div>

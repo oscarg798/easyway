@@ -1,1 +1,1 @@
-angular.module('EmployeeModule', ['AppServices']);
+angular.module('EmployeeModule', ['App']);
