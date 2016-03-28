@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%=typeof title == 'undefined' ? 'New Sails App' : title%></title>
+
+    <!-- Viewport mobile tag for sensible mobile support -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--STYLES-->
+    <link rel="stylesheet" href="/styles/importer.css">
+    <link rel="stylesheet" href="/styles/materialize.css">
+    <link rel="stylesheet" href="/styles/materialize.min.css">
+    <!--STYLES END-->
+  </head>
+
+  <body>
+    <nav>
+      <div class="nav navbar-fixed">
+        <a href="#" class="brand-logo">Easy Way</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="sass.html">Sass</a></li>
+          <li><a href="badges.html">Components</a></li>
+          <li><a href="collapsible.html">JavaScript</a></li>
+        </ul>
+      </div>
+    </nav>
+    <%- body %>
+
+
+
+    <!--TEMPLATES-->
+    
+    <!--TEMPLATES END-->
+
+
+    <!--SCRIPTS-->
+    <script src="/js/dependencies/sails.io.js"></script>
+    <script src="/js/dependencies/angular.min.js"></script>
+    <script src="/js/dependencies/jquery-1.12.2.min.js"></script>
+    <script src="/js/dependencies/materialize.min.js"></script>
+    <script src="/js/public/common/AppServices.module.js"></script>
+    <script src="/js/public/common/message.provider.js"></script>
+    <script src="/js/public/employee/employee.module.js"></script>
+    <script src="/js/public/employee/employee.controller.js"></script>
+    <!--SCRIPTS END-->
+  </body>
+</html>

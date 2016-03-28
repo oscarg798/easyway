@@ -1,0 +1,34 @@
+<div class="employee-container" ng-app="EmployeeModule"
+ng-controller="EmployeeController as employeeControl">
+<div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s6">
+          <input placeholder="{{employeeControl.namePlaceholder}}"
+          ng-model="employeeControl.employee.name" type="text" class="validate">
+          <label for="first_name">{{employeeControl.namePlaceholder}}</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s6">
+          <input placeholder="{{employeeControl.agePlaceholder}}"
+          ng-model="employeeControl.employee.age" type="date" class="validate">
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="input-field col s6">
+          <input placeholder="{{employeeControl.skillsPlaceholder}}"
+          ng-model="employeeControl.employee.skills" type="text" class="validate">
+          <label for="first_name">{{employeeControl.skillsPlaceholder}}</label>
+        </div>
+        <div class="col">
+          <a class="btn-floating btn-small waves-effect waves-light red">add<i class="material-icons"></i></a>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
