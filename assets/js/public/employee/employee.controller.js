@@ -1,4 +1,4 @@
-angular.module('EmployeeModule').controller('EmployeeController', EmployeeController);
+angular.module('AppModule').controller('EmployeeController', EmployeeController);
 
 EmployeeController.$inject =['MessagesProvider', '$timeout'];
 
@@ -16,6 +16,15 @@ function EmployeeController (messagesProvider, $timeout) {
     workExperience:[]
   };
 
+  self.defaultWorkExperience={
+    responsabilitiesCount:[messagesProvider.workExperience.responsibilitiesPlaceholder],
+    startDate:new Date()
+  };
+
+  self.defaultLanguageSkill={
+      language:'',
+      level:''
+  }
 
   self.namePlaceholder = messagesProvider.employee.namePlaceholder;
 
@@ -25,9 +34,9 @@ function EmployeeController (messagesProvider, $timeout) {
 
   self.skillsCount = [messagesProvider.employee.skillsPlaceholder];
 
+  self.languageSkillsCount = [Object.assign({},self.defaultLanguageSkill)];
 
-  self.workExperienceCount = [{responsabilitiesCount:[messagesProvider.workExperience.responsibilitiesPlaceholder],
-  startDate:new Date()}];
+  self.workExperienceCount = [Object.assign({},self.defaultWorkExperience)];
 
   self.skillInputButtonLabel = messagesProvider.employee.addLabel;
 
@@ -50,21 +59,61 @@ function EmployeeController (messagesProvider, $timeout) {
 
   self.deleteResponsibilityInput = deleteResponsibilityInput;
 
-  function initDatePickers() {
-    $('#workExperiencePicker').pickadate({
-      min: [1930,1,01],
-      max:new Date(),
-      selectYears:80
-    });
+  self.addLanguageSkill = addLanguageSkill;
+
+  self.deleteLanguageSkill = deleteLanguageSkill;
+
+  self.addEmployee = addEmployee;
+
+  function validateEmployeeData() {
+    var languageSkill = null;
+          for(var i = 0; i<self.languageSkillsCount.length; i++){
+            languageSkill=self.languageSkillsCount[i];
+              if(languageSkill == self.defaultLanguageSkill){
+                return false;
+              }
+          }
+          languageSkill= null;
+          return true;
+  }
+
+  function addEmployee() {
+      console.log(self.languageSkillsCount);
+      validateEmployeeData();
+  }
+
+  function addLanguageSkill(languageSkill) {
+    $timeout(function() {
+      if(languageSkill !== self.defaultLanguageSkill){
+        self.languageSkillsCount[self.languageSkillsCount.length-1] = languageSkill;
+        self.languageSkillsCount
+        .push(Object.assign({},self.defaultLanguageSkill));
+      }else{
+        /**TODO mostrar mensaje debe agregar este lenguaje antes de agregar otra**/
+      }
+
+    }, 0);
+  }
+
+  function deleteLanguageSkill(languageSkill) {
+    if(self.languageSkillsCount.length>1){
+      $timeout(function() {
+        index = self.languageSkillsCount.indexOf(languageSkill);
+        if(index>-1){
+          self.languageSkillsCount.splice(index,1);
+        }
+      }, 0);
+    }else{
+      /**TODO mostrar mensaje debe tener al menos una hailidad**/
+    }
   }
 
   function addWorkExperienceCollection(workExperience) {
     $timeout(function() {
-      if(workExperience!=={}){
+      if(workExperience!==self.defaultWorkExperience){
         self.workExperienceCount[self.workExperienceCount.length-1] = workExperience;
         self.workExperienceCount
-        .push({responsabilitiesCount:[messagesProvider.workExperience.responsibilitiesPlaceholder]});
-        initDatePickers();
+        .push(Object.assign({},self.defaultWorkExperience));
       }else{
         /**TODO mostrar mensaje debe agregar esta habilidad antes de agregar otra**/
       }

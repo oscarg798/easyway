@@ -1,4 +1,4 @@
-angular.module('App', []).service('MessagesProvider', MessagesProvider);
+angular.module('AppModule').service('MessagesProvider', MessagesProvider);
 
 MessagesProvider.$inject = ['$rootScope'];
 
@@ -16,7 +16,9 @@ function MessagesProvider($rootScope) {
         nativeLevel:'Nativo',
         basicLevel:'Basico',
         languageLabel:'Idioma',
-        levelLabel:'Nivel'
+        levelLabel:'Nivel',
+        personalInformationLabel:'Información Personal',
+        languagesTitleLabel:'Habilidades en Idiomas'
       },
       workExperience:{
         rolePlaceholder:'Cargo',
@@ -27,8 +29,11 @@ function MessagesProvider($rootScope) {
         workExperienceLabel:'Experiencia Laboral'
       },
       addLabel:'add',
+      addButtonLabel:'Agregar',
+      deleteButtonLabel:'Borrar',
       deleteLabel:'delete',
-      selectOptionLabel:'Seleccione una opción'
+      selectOptionLabel:'Seleccione una opción',
+      title:'Employee'
   };
 
   $rootScope.i18n = self;

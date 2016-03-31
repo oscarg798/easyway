@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="AppModule">
 <head>
   <title><%=typeof title == 'undefined' ? 'New Sails App' : title%></title>
-
+  <base href="/">
   <!-- Viewport mobile tag for sensible mobile support -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -13,10 +13,10 @@
   <!--STYLES END-->
 </head>
 
-<body>
-  <nav>
+<body >
+  <nav ng-controller="AppController as AppControl">
     <div class="nav navbar-fixed">
-      <a href="#" class="brand-logo">Easy Way</a>
+      <a href="#" class="brand-logo">{{::i18n.title}}</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="sass.html">Sass</a></li>
         <li><a href="badges.html">Components</a></li>
@@ -24,8 +24,7 @@
       </ul>
     </div>
   </nav>
-  <%- body %>
-
+    <div ng-view></div>
 
 
   <!--TEMPLATES-->
@@ -36,29 +35,16 @@
   <!--SCRIPTS-->
   <script src="/js/dependencies/sails.io.js"></script>
   <script src="/js/dependencies/angular.min.js"></script>
+  <script src="/js/dependencies/angular-route.min.js"></script>
   <script src="/js/dependencies/jquery-1.12.2.min.js"></script>
   <script src="/js/dependencies/materialize.min.js"></script>
-  <script src="/js/public/common/AppServices.module.js"></script>
+  <script src="/js/public/common/app.module.js"></script>
   <script src="/js/public/common/message.provider.js"></script>
-  <script src="/js/public/employee/employee.module.js"></script>
+  <script src="/js/public/common/app.controller.js"></script>
   <script src="/js/public/employee/employee.controller.js"></script>
   <script src="/js/materializeInit.js"></script>
   <!--SCRIPTS END-->
 
-  <script type="text/javascript">
-  $(document).ready(function() {
-    $('select').material_select();
-    $('.datepicker').pickadate({
-      min: [1930,1,01],
-      max:new Date(),
-      selectYears:80
-    });
-    $('#workExperiencePicker').pickadate({
-      min: [1930,1,01],
-      max:new Date(),
-      selectYears:80
-    });
-  });
   </script>
 </body>
 </html>

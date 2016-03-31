@@ -21,8 +21,7 @@ module.exports = {
         required:true
       },
       languageSkill:{
-        type:'string',
-        enum:['Spanish','English'],
+        type:'array',
         required:true,
       },
       languageSkillLevel:{

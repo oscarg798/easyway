@@ -28,10 +28,13 @@ var jsFilesToInject = [
   // Load sails.io before everything else
   'js/dependencies/sails.io.js',
 
+  '/js/dependencies/angular.min.js',
 
   'js/dependencies/**/*.js',
 
   'js/public/common/**.module.js',
+
+  'js/public/common/**.provider.js',
 
   'js/public/common/**.**.js',
 

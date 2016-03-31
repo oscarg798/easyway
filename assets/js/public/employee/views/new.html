@@ -1,0 +1,189 @@
+<div class="employee-container"
+ng-controller="EmployeeController as employeeControl">
+<div class="container">
+  <div class="row">
+    <form>
+      <div class="row card card-panel hoverable col s12 m8 l10 push-l1">
+        <div class="row card-title grey-text text-darken-4">
+          <div class="col s12 m8 l8 push-l2 push-m2 center-align">
+            <span>{{::i18n.employee.personalInformationLabel}}</span>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="row">
+            <div class="input-field col s12 m8 l8 push-l2 push-m2">
+              <i class="material-icons prefix">account_circle</i>
+              <input placeholder="{{employeeControl.namePlaceholder}}"
+              ng-model="employeeControl.employee.name" type="text" class="validate">
+              <label>{{employeeControl.namePlaceholder}}</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12 m8 l8  push-l2 push-m2">
+              <i class="material-icons prefix">today</i>
+              <input ng-model="employeeControl.employee.age"  type="date"
+              class="validate" placeholder="{{employeeControl.agePlaceholder}}">
+              <label></label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Skills-->
+      <div class="row card card-panel hoverable col s12 m8 l10 push-l1">
+        <div class="row card-title grey-text text-darken-4">
+          <div class="col s12 m8 l8 push-l2 push-m2 center-align">
+            <span>{{employeeControl.skillsPlaceholder}}</span>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="row" ng-repeat="skillInput in employeeControl.skillsCount track by $index">
+            <div class="input-field col s6 m6 l6 push-m1 push-l2">
+              <i class="material-icons prefix">thumb_up</i>
+              <input placeholder="{{employeeControl.skillsPlaceholder}}"
+              ng-model="skillInput" type="text" class="validate" value="{{skilssInput}}">
+            </div>
+            <div class="col s2 m2 l2 push-l2 push-m2">
+              <a class="btn-floating btn-medium waves-effect waves-light deep-purple accent-2"
+              ng-click="employeeControl.addSkillInput(skillInput)">
+              <i class="material-icons">{{i18n.addLabel}}</i></a>
+            </div>
+            <div class="col s2 m2 l2push-l2 push-m2">
+              <a class="btn-floating btn-medium waves-effect waves-light deep-purple accent-2"
+              ng-click="employeeControl.deleteSkillInput(skillInput)">
+              <i class="material-icons">{{i18n.deleteLabel}}</i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Skills END-->
+
+      <!--Language Skills-->
+      <div class="row card card-panel hoverable col s12 m8 l10 push-l1"
+        ng-repeat="languageSkill in employeeControl.languageSkillsCount track by $index">
+          <div class="row card-title grey-text text-darken-4">
+            <div class="col s12 m8 l8 push-l2 push-m2 center-align">
+              <span>{{::i18n.employee.languagesTitleLabel}}</span>
+            </div>
+          </div>
+          <div class="row card-content">
+            <div class="col s6 m6 l6">
+              <div class="grey-text text-darken-1">
+                <span>{{::i18n.employee.languageLabel}}</span>
+              </div>
+              <select ng-model="languageSkill.language" material-select>
+                <option value="" disabled selected>{{::i18n.selectOptionLabel}}</option>
+                <option  ng-repeat="language in employeeControl.languageSkillsOptions"
+                value="{{language}}">{{::language}}</option>
+              </select>
+            </div>
+            <div class="col s6">
+              <div class="grey-text text-darken-1">
+                <span>{{::i18n.employee.levelLabel}}</span>
+              </div>
+              <select ng-model="languageSkill.level" material-select>
+                <option value="" disabled selected>{{::i18n.selectOptionLabel}}</option>
+                <option  ng-repeat="level in employeeControl.languageSkillLevelOptions"
+                value="{{level}}">{{::level}}</option>
+              </select>
+            </div>
+          </div>
+           <div class="row card-action">
+             <div class="row">
+               <div class="col s4 m4 l4  push-s1 push-l1 push-m1">
+                 <button id="target" ng-click="employeeControl.addLanguageSkill(languageSkill)"
+                 class="btn waves-effect waves-light right deep-purple accent-2">
+                 {{::i18n.addButtonLabel}}</button>
+               </div>
+               <div class="col s4 m4 l4  push-s1 push-l1 push-m1">
+                 <button id="target" ng-click="employeeControl.deleteLanguageSkill(languageSkill)"
+                 class="btn waves-effect waves-light right deep-purple accent-2">
+                 {{::i18n.deleteButtonLabel}}</button>
+               </div>
+
+             </div>
+           </div>
+
+      </div>
+      <!--Language Skills END-->
+
+      <!--workExperience-->
+      <div class="row card card-panel hoverable col s12 m8 l10 push-l1"
+      ng-repeat="workExperience in employeeControl.workExperienceCount track by $index">
+      <div class="row card-title grey-text text-darken-4">
+        <div class="col s12 m8 l8 push-l2 push-m2 center-align">
+          <span>{{i18n.workExperience.workExperienceLabel}}</span>
+        </div>
+      </div>
+      <div class="card-content">
+        <div class="row">
+          <div class="input-field col s12 m8 l8 push-l2 push-m2">
+            <i class="material-icons prefix">work</i>
+            <input ng-model="workExperience.company" type="text" class="validate">
+            <label>{{::i18n.workExperience.companyPlaceHolder}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12 m8 l8 push-l2 push-m2">
+            <i class="material-icons prefix">work</i>
+            <input ng-model="workExperience.role" class="validate" type="text">
+            <label>{{::i18n.workExperience.rolePlaceholder}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12 m8 l8 push-l2 push-m2" >
+            <i class="material-icons prefix">today</i>
+            <input  type="date"
+            ng-model="workExperience.startDate" placeholder="{{::i18n.workExperience.startDatePlaceholder}}">
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12 m8 l8 push-l2 push-m2">
+            <i class="material-icons prefix">today</i>
+            <input id="workExperiencePicker" ng-model="workExperience.endDate"  type="date"
+            class="date" placeholder="{{::i18n.workExperience.endDatePlaceHolder}}">
+          </div>
+        </div>
+
+        <div class="row" ng-repeat="responsabilityInput in workExperience.responsabilitiesCount track by $index">
+          <div class="input-field col s6 m6 l6 push-m1 push-l2">
+            <input placeholder="{{i18n.workExperience.responsibilitiesPlaceholder}}"
+            ng-model="responsabilityInput" type="text" class="validate" value="{{responsabilityInput}}">
+          </div>
+          <div class="col s2 m2  push-s1 l2push-l2 push-m2">
+            <a class="btn-floating btn-medium waves-effect waves-light deep-purple accent-2"
+            ng-click="employeeControl.addResponsibilityInput(responsabilityInput, workExperience)">
+            <i class="material-icons">{{i18n.addLabel}}</i></a>
+          </div>
+          <div class="col s2 m2 l2  push-s1 push-l2 push-m2">
+            <a class="btn-floating btn-medium waves-effect waves-light deep-purple accent-2"
+            ng-click="employeeControl.deleteResponsibilityInput(responsabilityInput, workExperience)">
+            <i class="material-icons">{{i18n.deleteLabel}}</i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="row card-action">
+        <div class="col s4 m4 l4  push-s1 push-l1 push-m1">
+          <button id="target" ng-click="employeeControl.addWorkExperienceCollection(workExperience)"
+          class="btn waves-effect waves-light right deep-purple accent-2">
+          {{::i18n.addButtonLabel}}</button>
+        </div>
+        <div class="col s4 m4 l4  push-s1 push-l1 push-m1">
+          <button id="target" ng-click="employeeControl.deleteWorkExperienceCollection(workExperience)"
+          class="btn waves-effect waves-light right deep-purple accent-2">
+          {{::i18n.deleteButtonLabel}}</button>
+        </div>
+      </div>
+      <!--workExperience END-->
+    </div>
+    <div class="row">
+      <div class="col">
+          <a class="btn-floating btn-large waves-effect waves-light deep-purple accent-2"
+          ng-click="employeeControl.addEmployee()"><i class="material-icons">add</i></a>
+      </div>
+    </div>
+  </form>
+</div>
+</div>
+</div>
